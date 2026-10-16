@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#dce3e8">
+<meta name="description" content="The things Jean Lucretia never told Ran. A little archive of letters, songs, and unsaid things.">
+<title>The Things I Never Told You — JL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue: #879cac;
+  --blue-dark: #455d70;
+  --blue-light: #dce5eb;
+  --paper: #f7f4ed;
+  --paper-dark: #ece7dc;
+  --ink: #394c5a;
+  --muted: #7b8990;
+  --line: #d6d9d7;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+button, a { -webkit-tap-highlight-color: transparent; }
+
+button { font: inherit; }
+
+a { color: inherit; }
+
+::selection {
+  background: #c4d2dc;
+  color: var(--blue-dark);
+}
+
+/* OPENING */
+
+#opening {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background:
+    radial-gradient(ellipse at 15% 10%, #e9eceb 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 90%, #bdcbd5 0%, transparent 50%),
+    #dce3e8;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#opening.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-inner {
+  width: 100%;
+  max-width: 570px;
+  text-align: center;
+  animation: rise 1.2s ease both;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--blue-dark);
+}
+
+.envelope {
+  width: 68px;
+  height: 49px;
+  margin: 36px auto 30px;
+  position: relative;
+  border: 1px solid #8297a5;
+  border-radius: 2px;
+  background: rgba(247,244,237,.5);
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: #dce3e8;
+  clip-path: polygon(0 0, 50% 55%, 100% 0);
+  border-bottom: 1px solid #8297a5;
+}
+
+.envelope:after {
+  content: "♡";
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%,-50%);
+  font-family: var(--serif);
+  font-size: 19px;
+  color: var(--blue-dark);
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+.opening-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(38px, 9vw, 67px);
+  line-height: .98;
+  font-weight: 400;
+  letter-spacing: -1.5px;
+}
+
+.opening-title em {
+  display: block;
+  font-weight: 400;
+  color: var(--blue-dark);
+}
+
+.opening-subtitle {
+  margin: 25px 0 32px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  color: #667c8b;
+}
+
+.open-button {
+  padding: 13px 27px;
+  border: 1px solid #8297a5;
+  background: transparent;
+  color: var(--blue-dark);
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.open-button:hover {
+  background: var(--blue-dark);
+  color: var(--paper);
+}
+
+.opening-foot {
+  margin-top: 55px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #718593;
+  text-transform: uppercase;
+}
+
+/* MAIN SITE */
+
+#site { display: none; }
+
+#site.visible { display: block; }
+
+header {
+  padding: 22px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  gap: 16px;
+}
+
+.brand {
+  font-family: var(--serif);
+  font-size: 23px;
+  letter-spacing: 1px;
+}
+
+.brand small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.header-note {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 27px;
+  flex-wrap: wrap;
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,.2);
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color .2s;
+}
+
+nav a:hover { color: var(--blue-dark); }
+
+main {
+  width: min(100% - 42px, 790px);
+  margin: 0 auto;
+}
+
+.hero {
+  min-height: 490px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 75px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero .eyebrow { margin-bottom: 28px; }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(45px, 10vw, 82px);
+  line-height: .96;
+  letter-spacing: -2px;
+  margin-bottom: 26px;
+}
+
+.hero h1 em {
+  display: block;
+  color: var(--blue);
+  font-weight: 400;
+}
+
+.hero p {
+  max-width: 420px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 19px;
+  font-style: italic;
+}
+
+.section {
+  padding: 78px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 25px;
+}
+
+.section-kicker {
+  color: var(--blue);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(37px, 8vw, 55px);
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: 17px;
+}
+
+.section-intro {
+  color: var(--muted);
+  max-width: 470px;
+  font-size: 13px;
+  margin-bottom: 37px;
+}
+
+.paper {
+  padding: clamp(23px, 6vw, 48px);
+  background: #fbf9f4;
+  border: 1px solid #e8e4da;
+  box-shadow: 0 12px 38px rgba(57,76,90,.035);
+}
+
+.letter-date {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.letter-heading {
+  font-family: var(--serif);
+  font-size: 34px;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.letter-body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.9;
+  white-space: normal;
+}
+
+.letter-body p { margin-bottom: 21px; }
+
+.signature {
+  margin-top: 34px;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-style: italic;
+  text-align: right;
+}
+
+.song {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.song-number {
+  font-family: var(--serif);
+  font-size: 26px;
+  color: #9aaab4;
+  min-width: 28px;
+}
+
+.song-info { flex: 1; }
+
+.song-title {
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.song-artist {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .5px;
+}
+
+.song-note {
+  margin-top: 9px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: #71818c;
+}
+
+.song-link {
+  text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.song-link:hover {
+  background: var(--blue-dark);
+  color: white;
+}
+
+.question {
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.question p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(23px, 5vw, 30px);
+  line-height: 1.35;
+  font-style: italic;
+}
+
+.question small {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.trace-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+}
+
+.trace-card {
+  text-align: left;
+  width: 100%;
+  padding: 22px;
+  background: #f1efe8;
+  border: 1px solid #e3e0d7;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .3s, transform .3s;
+}
+
+.trace-card:hover {
+  background: #e5ebee;
+  transform: translateY(-2px);
+}
+
+.trace-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--blue);
+  margin-bottom: 13px;
+}
+
+.trace-quote {
+  display: block;
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.25;
+  font-style: italic;
+}
+
+.trace-detail {
+  display: none;
+  margin-top: 28px;
+}
+
+.trace-detail.active { display: block; }
+
+.trace-detail .paper { margin-top: 15px; }
+
+.trace-detail p {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.8;
+}
+
+.close-trace {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  padding: 12px 0;
+  text-transform: uppercase;
+}
+
+.trace-ending {
+  margin-top: 28px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 23px;
+}
+
+footer {
+  text-align: center;
+  padding: 55px 20px 38px;
+  color: var(--muted);
+}
+
+.footer-title {
+  font-family: var(--serif);
+  font-size: 27px;
+  font-style: italic;
+  color: var(--ink);
+}
+
+footer p {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 12px 0 0;
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+  header { padding: 18px 20px; }
+  .header-note { font-size: 8px; letter-spacing: 1px; }
+  nav { gap: 13px 18px; }
+  nav a { font-size: 8px; }
+  .hero { min-height: 420px; }
+  .section { padding: 60px 0; }
+  .trace-list { grid-template-columns: 1fr; }
+  .song { gap: 12px; }
+  .song-title { font-size: 21px; }
+  .song-link { padding: 8px; font-size: 8px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- OPENING PAGE -->
+<div id="opening">
+  <div class="opening-inner">
+    <div class="eyebrow">A personal archive · Est. 2026</div>
+    <div class="envelope" aria-hidden="true"></div>
+
+    <h1 class="opening-title">
+      The Things
+      <em>I Never Told You</em>
+    </h1>
+
+    <p class="opening-subtitle">
+      an archive by Jean Lucretia, for Ran
+    </p>
+
+    <button class="open-button" id="openArchive">
+      Open the Archive &nbsp; ↗
+    </button>
+
+    <div class="opening-foot">
+      Some things deserve a place to stay.
+    </div>
+  </div>
+</div>
+
+<!-- WEBSITE -->
+<div id="site">
+
+<header>
+  <div class="brand">
+    JL.
+    <small>Jean Lucretia's archive</small>
+  </div>
+  <div class="header-note">For Ran, quietly.</div>
+</header>
+
+<nav aria-label="Main navigation">
+  <a href="#home">Home</a>
+  <a href="#letters">Letters</a>
+  <a href="#soundtrack">Soundtrack</a>
+  <a href="#questions">Questions</a>
+  <a href="#traces">Traces</a>
+</nav>
+
+<main>
+
+<!-- HOME -->
+<section class="hero fade" id="home">
+  <div class="eyebrow">An archive of unsaid things</div>
+  <h1>
+    The Things
+    <em>I Never Told You</em>
+  </h1>
+  <p>
+    For the words I kept, the songs I saved,
+    and the questions I never dared to ask.
+  </p>
+</section>
+
+<!-- LETTERS -->
+<section class="section fade" id="letters">
+  <div class="section-kicker">01 — The Letters</div>
+  <h2 class="section-title">in the quietest<br>part of me.</h2>
+  <p class="section-intro">
+    A letter for the things that were easier to write
+    than to say out loud.
+  </p>
+
+  <article class="paper">
+    <div class="letter-date">An unsent letter · For Ran</div>
+    <h3 class="letter-heading">Ran,</h3>
+
+    <div class="letter-body">
+      <p>
+        Aku akhir-akhir ini sering berpikir tentang betapa
+        anehnya merindukan seseorang tanpa benar-benar tahu
+        bagian mana dari dirinya yang paling kita rindukan.
+      </p>
+
+      <p>
+        Mungkin aku merindukan percakapan kita. Cara hal-hal
+        kecil bisa menjadi cerita panjang ketika aku berbicara
+        denganmu. Atau mungkin aku hanya merindukan perasaan
+        bahwa, untuk beberapa saat, ada seseorang yang membuat
+        hari-hariku terasa sedikit lebih ringan.
+      </p>
+
+      <p>
+        I miss you, but not in a way that asks you to come back
+        and make everything the way it used to be. I don't
+        think I want to turn back time. There are things that
+        have changed, and perhaps some things are meant to stay
+        changed.
+      </p>
+
+      <p>
+        Aku hanya kadang bertanya-tanya apakah kamu juga
+        mengingatnya. Apakah ada hal kecil yang tiba-tiba
+        membuatmu teringat kepadaku, atau apakah aku hanya
+        menyimpan begitu banyak kenangan yang ternyata tidak
+        pernah tinggal lama di sisimu.
+      </p>
+
+      <p>
+        I hope life has been kind to you, Ran. I hope you have
+        reasons to laugh on ordinary days, people who listen
+        when you need to talk, and somewhere you can return to
+        when the world feels a little too loud.
+      </p>
+
+      <p>
+        And if I am no longer the person you turn to, I hope
+        you know that I still wish you well. Maybe that is one
+        of the quieter ways of loving someone: allowing them
+        to find happiness, even when you are no longer at the
+        center of it.
+      </p>
+
+      <p>
+        I'm glad it was you, Ran.
+      </p>
+
+      <p>
+        I don't know where this feeling will take me. For now,
+        I suppose I can let it exist without asking it to
+        become anything else. Some feelings don't need an
+        answer to have been real.
+      </p>
+
+      <p>
+        With a little more honesty than usual, and a warmth
+        I don't always know how to show,
+      </p>
+    </div>
+
+    <div class="signature">Jean</div>
+  </article>
+</section>
+
+<!-- SOUNDTRACK -->
+<section class="section fade" id="soundtrack">
+  <div class="section-kicker">02 — The Soundtrack</div>
+  <h2 class="section-title">Songs I couldn't<br>explain.</h2>
+  <p class="section-intro">
+    Some songs say the things I don't know how to put
+    into my own words.
+  </p>
+
+  <div class="song">
+    <div class="song-number">01</div>
+    <div class="song-info">
+      <div class="song-title">Backburner</div>
+      <div class="song-artist">NIKI</div>
+      <div class="song-note">
+        For the part of me that still makes room for you.
+      </div>
+    </div>
+    <a class="song-link"
+       href="https://www.youtube.com/results?search_query=NIKI+Backburner"
+       target="_blank" rel="noopener noreferrer">Listen ↗</a>
+  </div>
+
+  <div class="song">
+    <div class="song-number">02</div>
+    <div class="song-info">
+      <div class="song-title">Oceans & Engines</div>
+      <div class="song-artist">NIKI</div>
+      <div class="song-note">
+        For the goodbyes that never quite felt like goodbyes.
+      </div>
+    </div>
+    <a class="song-link"
+       href="https://www.youtube.com/results?search_query=NIKI+Oceans+and+Engines"
+       target="_blank" rel="noopener noreferrer">Listen ↗</a>
+  </div>
+
+  <div class="song">
+    <div class="song-number">03</div>
+    <div class="song-info">
+      <div class="song-title">Rehat</div>
+      <div class="song-artist">Kunto Aji</div>
+      <div class="song-note">
+        A small reminder to be gentle with myself, too.
+      </div>
+    </div>
+    <a class="song-link"
+       href="https://www.youtube.com/results?search_query=Kunto+Aji+Rehat"
+       target="_blank" rel="noopener noreferrer">Listen ↗</a>
+  </div>
+
+  <div class="song">
+    <div class="song-number">04</div>
+    <div class="song-info">
+      <div class="song-title">Until I Found You</div>
+      <div class="song-artist">Stephen Sanchez</div>
+      <div class="song-note">
+        For the tenderness of having found someone at all.
+      </div>
+    </div>
+    <a class="song-link"
+       href="https://www.youtube.com/results?search_query=Stephen+Sanchez+Until+I+Found+You"
+       target="_blank" rel="noopener noreferrer">Listen ↗</a>
+  </div>
+</section>
+
+<!-- QUESTIONS -->
+<section class="section fade" id="questions">
+  <div class="section-kicker">03 — The Unasked Questions</div>
+  <h2 class="section-title">Things I never<br>asked you.</h2>
+  <p class="section-intro">
+    Not because I didn't want to know. Sometimes,
+    I was simply afraid of what the answers might be.
+  </p>
+
+  <div class="question">
+    <p>Did you ever miss me when I wasn't around?</p>
+    <small>01 / A question I kept to myself</small>
+  </div>
+
+  <div class="question">
+    <p>Was there ever a moment when you wanted to tell me something, but changed your mind?</p>
+    <small>02 / Something I still wonder about</small>
+  </div>
+
+  <div class="question">
+    <p>Do you remember the little things about us the way I do?</p>
+    <small>03 / A memory without an answer</small>
+  </div>
+
+  <div class="question">
+    <p>When you think of me now, what is the first thing that comes to mind?</p>
+    <small>04 / A question for another day</small>
+  </div>
+
+  <div class="question">
+    <p>Have you ever wondered what would have happened if things had been different?</p>
+    <small>05 / A thought I never said aloud</small>
+  </div>
+</section>
+
+<!-- TRACE ARCHIVE -->
+<section class="section fade" id="traces">
+  <div class="section-kicker">04 — The Trace Archive</div>
+  <h2 class="section-title">Little pieces<br>left behind.</h2>
+  <p class="section-intro">
+    Fragments of thoughts, unfinished sentences,
+    and moments I couldn't quite leave alone.
+    Select a trace to read it.
+  </p>
+
+  <div class="trace-list">
+    <button class="trace-card" data-trace="1">
+      <span class="trace-label">TRACE 01</span>
+      <span class="trace-quote">Some people stay, even after they leave.</span>
+    </button>
+
+    <button class="trace-card" data-trace="2">
+      <span class="trace-label">TRACE 02</span>
+      <span class="trace-quote">I still remember the smallest things.</span>
+    </button>
+
+    <button class="trace-card" data-trace="3">
+      <span class="trace-label">TRACE 03</span>
+      <span class="trace-quote">I never learned how to say it properly.</span>
+    </button>
+
+    <button class="trace-card" data-trace="4">
+      <span class="trace-label">TRACE 04</span>
+      <span class="trace-quote">Maybe silence was my answer, too.</span>
+    </button>
+
+    <button class="trace-card" data-trace="5" style="grid-column: 1 / -1;">
+      <span class="trace-label">TRACE 05</span>
+      <span class="trace-quote">I wonder if you missed me, too.</span>
+    </button>
+  </div>
+
+  <div class="trace-detail" id="traceDetail">
+    <button class="close-trace" id="closeTrace">← Back to the traces</button>
+    <article class="paper">
+      <div class="letter-date" id="traceNumber">TRACE 01</div>
+      <h3 class="letter-heading" id="traceHeading"></h3>
+      <div class="letter-body" id="traceBody"></div>
+      <div class="trace-ending">— JL</div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-title">For Ran, always in some quiet way.</div>
+  <p>Written and kept by Jean Lucretia · JL</p>
+  <p style="margin-top: 24px; letter-spacing: 1px; text-transform: none;">
+    Some things don't need to be sent to be true.
+  </p>
+</footer>
+
+</div>
+
+<script>
+const opening = document.getElementById('opening');
+const site = document.getElementById('site');
+
+document.getElementById('openArchive').addEventListener('click', () => {
+  opening.classList.add('closed');
+  site.classList.add('visible');
+
+  setTimeout(() => {
+    opening.style.display = 'none';
+  }, 1050);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const traces = {
+  1: {
+    heading: 'Some people stay.',
+    body: `
+      <p>Some people leave your everyday life but somehow never leave your thoughts.</p>
+      <p>They become a song you keep returning to, a name that makes you pause, or a story you almost tell before remembering that the person who would understand it best is no longer there in quite the same way.</p>
+      <p>Funny how absence can still have a presence of its own.</p>
+    `
+  },
+  2: {
+    heading: 'The smallest things.',
+    body: `
+      <p>I don't always remember the big moments first. Sometimes it's the way you tell a story, the things you complain about, or a small detail you probably forgot you ever told me.</p>
+      <p>Those are the things that return without warning. Ordinary things, carrying an extraordinary amount of feeling.</p>
+      <p>Maybe that's what remembering someone really looks like.</p>
